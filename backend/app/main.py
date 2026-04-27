@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
 from . import crud, schemas
+from .chat import chat_with_db
 from .database import Base, engine, get_db
 from .seed import seed_database
 
@@ -109,6 +110,14 @@ def delete_usage(usage_id: int, db: Session = Depends(get_db)):
     if not crud.delete_usage(db, usage_id):
         raise HTTPException(status_code=404, detail="Usage record not found")
     return {"detail": "Usage record deleted"}
+
+
+# ── Chat with DB ──────────────────────────────────────────────────────────────
+@app.post("/api/chat", response_model=schemas.ChatResponse)
+def chat_endpoint(req: schemas.ChatRequest, db: Session = Depends(get_db)):
+    history = [{"role": m.role, "content": m.content} for m in req.history]
+    result = chat_with_db(req.question, db, conversation_history=history)
+    return result
 
 
 # ── Health ────────────────────────────────────────────────────────────────────

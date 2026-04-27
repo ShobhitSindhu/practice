@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { BarChart3, Users, Database, LayoutDashboard } from "lucide-react";
+import { BarChart3, Users, Database, LayoutDashboard, MessageSquare } from "lucide-react";
 
 const NAV = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/employees", label: "Employees", icon: Users },
   { to: "/usage", label: "Usage Records", icon: Database },
   { to: "/charts", label: "Analytics", icon: BarChart3 },
+  { to: "/chat", label: "Chat with DB", icon: MessageSquare },
 ];
 
 export default function Sidebar() {

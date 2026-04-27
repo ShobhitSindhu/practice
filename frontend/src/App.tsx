@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Employees from "./pages/Employees";
 import UsageRecords from "./pages/UsageRecords";
 import Analytics from "./pages/Analytics";
+import ChatDB from "./pages/ChatDB";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             <Route path="/employees" element={<Employees />} />
             <Route path="/usage" element={<UsageRecords />} />
             <Route path="/charts" element={<Analytics />} />
+            <Route path="/chat" element={<ChatDB />} />
           </Routes>
         </main>
       </div>

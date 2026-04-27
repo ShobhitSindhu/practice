@@ -111,3 +111,22 @@ class DashboardOverview(BaseModel):
     employee_summaries: list[EmployeeSummary]
     language_breakdown: list[LanguageBreakdown]
     department_summary: list[DepartmentSummary]
+
+
+# ── Chat with DB ─────────────────────────────────────────────────────────────
+class ChatMessage(BaseModel):
+    role: str  # "user" or "assistant"
+    content: str
+
+
+class ChatRequest(BaseModel):
+    question: str
+    history: list[ChatMessage] = []
+
+
+class ChatResponse(BaseModel):
+    answer: str
+    sql: str | None = None
+    results: list[dict] | None = None
+    explanation: str | None = None
+    error: bool = False
